@@ -1,0 +1,177 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DisplayAdmin">
+    <!--파란 라벨-->
+    <Style x:Key="DefaultLabel" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="#4ca0e5"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <!--타이틀 라벨-->
+    <Style x:Key="TitleLabel" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#061b2b"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <!--리스트박스 내부 라벨-->
+    <Style x:Key="ListLabel" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontFamily" Value="NanumGothic"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <!--배경 하얀 버튼-->
+    <Style x:Key="WhiteBtn" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="#4ca0e5"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Foreground" Value="#4ca0e5"/>
+        <Setter Property="BorderThickness" Value="2"/>
+    </Style>
+
+    <Style x:Key="WatermarkedTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="14,0,0,0"/>
+        <Setter Property="Control.Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox" >
+                    <!-- Template derived from Default TextBoxBase. -->
+                    <!-- Added the Label InternalWatermarkLabel together with the surrounding Grid. -->
+                    <Grid>
+                        <Border Name="Bd"
+                                Background="{TemplateBinding Panel.Background}" 
+                                BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                SnapsToDevicePixels="True">
+                            <ScrollViewer Name="PART_ContentHost"
+                                          SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                          />
+                        </Border>
+                        <Label x:Name="InternalWatermarkLabel" 
+                               Content="{TemplateBinding Tag}" 
+                               Visibility="Collapsed" Focusable="False"
+                               Foreground="#C9CACA"
+                               VerticalContentAlignment="Center"
+                               FontSize="15"
+                               Padding="14,0,0,0"
+                               Background="Transparent"
+                               />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!-- The multitrigger is responsible for showing and hiding the watermark. -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="False" />
+                                <Condition Property="Text" Value="" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Visibility" TargetName="InternalWatermarkLabel"
+                                        Value="Visible" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <!-- This trigger mimics the default behavior. -->
+                        <Trigger Property="UIElement.IsEnabled" Value="False" >
+                            <Setter Property="Panel.Background" TargetName="Bd"
+                                    Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                            <Setter Property="TextElement.Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--탭아이템-->
+    <Style x:Key="TabHeader" TargetType="{x:Type TabItem}">
+        <Setter Property="FontSize" Value="19"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border Name="Border" BorderThickness="2,2,2,0" BorderBrush="#c9caca" CornerRadius="4,4,0,0" Margin="5,0" Height="43" Width="146">
+                        <Border Name="BottomBorder" BorderThickness="0,0,0,2" BorderBrush="#c9caca" CornerRadius="4,4,0,0" Margin="0,0,0,-2">
+                            <ContentPresenter x:Name="ContentSite"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              ContentSource="Header"/>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="BottomBorder" Property="BorderBrush" Value="White" />
+                            <Setter Property="Foreground" Value="#4ca0e5" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="BottomBorder" Property="BorderBrush" Value="#c9caca" />
+                            <Setter Property="Foreground" Value="#061b2b" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- TabControl style -->
+    <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="1" BorderThickness="0,2,0,0" CornerRadius="0,0,2,2"
+                                BorderBrush="#c9caca">
+                            <ContentPresenter ContentSource="SelectedContent" Margin="0,10,0,0"/>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" IsItemsHost="true"/>
+                        <Rectangle Grid.Row="0" Height="10" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--탭아이템 정보관리-->
+    <Style x:Key="TabItemHeader" TargetType="{x:Type TabItem}">
+        <Setter Property="FontSize" Value="19"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border Name="Border" BorderThickness="2" BorderBrush="#4ca0e5" Margin="0,0,1,0" Height="40" Width="117"
+                            Background="#4ca0e5">
+                            <ContentPresenter x:Name="ContentSite"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              ContentSource="Header"/>
+                        </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#4ca0e5" />
+                            <Setter TargetName="Border" Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="#4ca0e5" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#4ca0e5" />
+                            <Setter TargetName="Border" Property="Background" Value="#4ca0e5" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

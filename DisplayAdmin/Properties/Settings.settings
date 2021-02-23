@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DisplayAdmin.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="JSON_FILE_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jireh\DisplaySharedData\JSON\</Value>
+    </Setting>
+    <Setting Name="ENT_USER" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MANAGEMENT</Value>
+    </Setting>
+    <Setting Name="IMAGE_FILE_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jireh\DisplaySharedData\IMAGE\</Value>
+    </Setting>
+    <Setting Name="MOVIE_FILE_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jireh\DisplaySharedData\MOVIE\</Value>
+    </Setting>
+    <Setting Name="ROOT_FILE_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\192.168.0.1\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

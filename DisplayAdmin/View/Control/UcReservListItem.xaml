@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="DisplayAdmin.View.Control.UcReservListItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DisplayAdmin.View.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="616">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DisplayAdmin;component/ControlDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal" Background="#efefef" Margin="5">
+            <Label Content="{Binding INDEX}" Style="{StaticResource ListLabel}" Margin="0,0,10,0" Visibility="Hidden"/>
+            <Label Content="{Binding DESC}" Style="{StaticResource ListLabel}"/>
+            <!--<Label Content="0" Style="{StaticResource ListLabel}"/>
+            <Label Content="랄랄라랄" Style="{StaticResource ListLabel}"/>-->
+        </StackPanel>
+    </Grid>
+</UserControl>

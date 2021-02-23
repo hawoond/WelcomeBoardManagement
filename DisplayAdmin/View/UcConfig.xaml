@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="DisplayAdmin.View.UcConfig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DisplayAdmin.View"
+             xmlns:control="clr-namespace:DisplayAdmin.View.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="920" d:DesignWidth="1180">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DisplayAdmin;component/ControlDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="62"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Height="62" Background="#061b2b" Grid.Row="0">
+            <Border CornerRadius="3" Width="8" Height="24" Background="#4ca0e5" 
+                    VerticalAlignment="Center" HorizontalAlignment="Left" Margin="35,0,0,0"/>
+            <Label Content="전체 설정" Foreground="White" FontSize="21" FontFamily="NanumgothicBold" VerticalAlignment="Center"
+                   Margin="18,0,0,0"/>
+        </DockPanel>
+        <ScrollViewer Grid.Row="1" Background="WhiteSmoke" VerticalScrollBarVisibility="Hidden">
+            <StackPanel>
+                <StackPanel Orientation="Vertical" Background="White" Margin="20,20,20,20">
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <Rectangle Width="11" Height="11" Fill="#4ca0e5" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <Label Content="학교명 &amp; 화면 유지 시간 입력" Style="{StaticResource TitleLabel}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="학교명"
+                                   Height="40"
+                                   Style="{StaticResource DefaultLabel}" Width="288"/>
+                            <TextBox Width="194" Margin="10,0,47,0"
+                                     Style="{StaticResource WatermarkedTextBox}" Tag="학교명을 입력하세요"
+                                     x:Name="tbSchoolNM"/>
+                            <Rectangle Width="1" Fill="LightGray" Margin="0,0,47,0"/>
+                            <Label Content="화면 유지 시간"
+                                   Height="40"
+                                   Style="{StaticResource DefaultLabel}" Width="288"/>
+                            <TextBox Width="194" Margin="10,0,0,0"
+                                     Style="{StaticResource WatermarkedTextBox}" Tag="초 단위로 입력하세요"
+                                     x:Name="tbInterval"/>
+                        </StackPanel>
+                        <Rectangle Height="1" Fill="LightGray" Margin="50,70,60,30"/>
+                        <Button Content="등록" Margin="50,10,50,30" Width="200" 
+                                Style="{StaticResource WhiteBtn}" Height="50"
+                                Click="Button_Click"/>
+
+                    </StackPanel>
+                    
+                    
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Background="White" Margin="20,20,20,20">
+                    <StackPanel Margin="20">
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <Rectangle Width="11" Height="11" Fill="#4ca0e5" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <Label Content="공유 폴더 아이피 입력" Style="{StaticResource TitleLabel}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="890" Margin="0"
+                                     Style="{StaticResource WatermarkedTextBox}" Tag="아이피를 입력하세요"
+                                     x:Name="tbSharedFolder"
+                                     Height="50"/>
+                            <Button Content="등록" Margin="10,0,0,0" Width="200" 
+                                    Style="{StaticResource WhiteBtn}" Height="50"
+                                    HorizontalAlignment="Right"
+                                    Click="Button_Click_1"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Background="White" Margin="20,20,20,20">
+                    <StackPanel Orientation="Vertical" Margin="50,20,50,20">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <Rectangle Width="11" Height="11" Fill="#4ca0e5" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <Label Content="출력 정보 날짜 설정" Style="{StaticResource TitleLabel}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="446" Height="418" HorizontalAlignment="Left" >
+                                <Calendar x:Name="cdrReserveDate" 
+                                          SelectedDatesChanged="CdrReserveDate_SelectedDatesChanged"/>
+                            </Viewbox>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="20,0,0,0" Width="570">
+                                <ListBox x:Name="lbAllScreenList"
+                                         Width="570"
+                                         Height="200" 
+                                         HorizontalAlignment="Center"
+                                         PreviewMouseLeftButtonDown="LbAllScreenList_PreviewMouseLeftButtonDown"
+                                         Margin="0,0,0,20">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type control:UcReservListItem}">
+                                            <control:UcReservListItem DataContext="{Binding}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="lbReserveList"
+                                             Width="570"
+                                             AllowDrop="True"
+                                             Drop="LbReserveList_Drop"
+                                             Height="180" 
+                                             HorizontalAlignment="Center"
+                                             PreviewMouseRightButtonUp="LbReserveList_PreviewMouseRightButtonUp"
+                                             Margin="0,0,0,0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type control:UcReservListItem}">
+                                            <control:UcReservListItem DataContext="{Binding}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

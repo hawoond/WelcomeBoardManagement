@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="DisplayAdmin.View.Control.UcOpenFileDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DisplayAdmin.View.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="316">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DisplayAdmin;component/ControlDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White" >
+        <DockPanel x:Name="spOpenFileBackView" Height="40">
+            <Button Margin="0,0,0,0" x:Name="btnOpenFileDialog" Content="파일 선택" Width="83" Height="40"
+                    Style="{StaticResource WhiteBtn}"
+                    DockPanel.Dock="Left" HorizontalAlignment="Left"/>
+            <!--<TextBox Margin="4,0,0,0" BorderThickness="1" HorizontalAlignment="Stretch" Width="Auto" Height="40"
+                     Text="{Binding Path=Filepath}"/>-->
+        </DockPanel>
+    </Grid>
+</UserControl>

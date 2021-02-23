@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="DisplayAdmin.View.UcCelebration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DisplayAdmin.View"
+             xmlns:control="clr-namespace:DisplayAdmin.View.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="920" 
+             d:DesignWidth="1180">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DisplayAdmin;component/ControlDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="62"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Height="62" 
+                   Background="#061b2b" 
+                   Grid.Row="0">
+            <Border CornerRadius="3" 
+                    Width="8" 
+                    Height="24" 
+                    Background="#4ca0e5" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Left" 
+                    Margin="35,0,0,0"/>
+            <Label Content="축하 메세지" 
+                   Foreground="White" 
+                   FontSize="21" 
+                   FontFamily="NanumgothicBold" 
+                   VerticalAlignment="Center"
+                   Margin="18,0,0,0"/>
+        </DockPanel>
+        <ScrollViewer Grid.Row="1"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <StackPanel Background="WhiteSmoke" 
+                    Grid.Row="1">
+                <StackPanel Orientation="Vertical">
+                    <Border Background="White" 
+                        BorderBrush="Gray" 
+                        BorderThickness="1"
+                        Visibility="Visible" 
+                        Margin="20" 
+                        VerticalAlignment="Top">
+                        <StackPanel Orientation="Vertical" 
+                                Margin="20">
+                            <StackPanel Orientation="Vertical" 
+                                    Margin="10,10,10,10">
+                                <StackPanel Orientation="Horizontal" 
+                                        Margin="0,0,0,20">
+                                    <Rectangle Width="11" 
+                                           Height="11" 
+                                           Fill="#4ca0e5" 
+                                           VerticalAlignment="Center" 
+                                           Margin="0,0,10,0"/>
+                                    <Label Content="생일 명단 파일 첨부" 
+                                       Style="{StaticResource TitleLabel}"/>
+                                </StackPanel>
+                                <DockPanel Margin="0,10,0,10">
+                                    <Label Content="생일 명단" 
+                                       Style="{StaticResource DefaultLabel}"/>
+                                    <Grid Background="#ffffff" 
+                                      Margin="3,0,0,0">
+                                        <DockPanel x:Name="spOpenFileBackView" 
+                                               Height="40">
+                                            <Button Margin="0,0,0,0" 
+                                                x:Name="btnOpenFileDialog" 
+                                                Content="파일 선택" 
+                                                Width="83" 
+                                                Height="40"
+                                                Click="BtnOpenFileDialog_Click"
+                                                Style="{StaticResource WhiteBtn}"/>
+                                            <TextBox  x:Name="tbFile"
+                                                  Margin="4,0,0,0" 
+                                                  BorderThickness="1,1,1,1" 
+                                                  HorizontalAlignment="Stretch" 
+                                                  Width="Auto" 
+                                                  Height="40"
+                                                  Text="{Binding Path=Filepath}"/>
+                                        </DockPanel>
+                                    </Grid>
+                                </DockPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Border Background="White" 
+                        BorderBrush="Gray" 
+                        BorderThickness="1"
+                        Visibility="Visible" 
+                        Margin="20" 
+                        VerticalAlignment="Top">
+                        <StackPanel Orientation="Vertical" 
+                                Margin="24,20,24,20">
+                            <StackPanel Orientation="Horizontal" 
+                                    Margin="0,0,0,20">
+                                <Rectangle Width="11" 
+                                       Height="11" 
+                                       Fill="#4ca0e5" 
+                                       VerticalAlignment="Center" 
+                                       Margin="0,0,10,0"/>
+                                <Label Content="입학일/졸업일 설정" 
+                                   Style="{StaticResource TitleLabel}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Width="446" 
+                                     Height="418" 
+                                     HorizontalAlignment="Left" >
+                                    <Calendar SelectedDatesChanged="CdrReserveDate_SelectedDatesChanged"  
+                                          x:Name="cdrReserveDate" />
+                                </Viewbox>
+                                <GroupBox BorderThickness="0">
+                                    <StackPanel Orientation="Vertical" 
+                                        VerticalAlignment="Top" 
+                                        Margin="20,10,0,0" 
+                                        Width="616">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border BorderBrush="Gray" 
+                                            BorderThickness="1" 
+                                            Width="100" 
+                                            Height="30">
+                                                <RadioButton Content="입학" 
+                                                             VerticalAlignment="Center" 
+                                                             FontSize="15" 
+                                                             Margin="10,0,0,0"
+                                                             VerticalContentAlignment="Center"
+                                                             x:Name="cbAdmission" 
+                                                             GroupName="check"/>
+                                            </Border>
+                                            <Button Style="{StaticResource WhiteBtn}" 
+                                                    Content="확인" 
+                                                    Margin="3,0,0,0" 
+                                                    Width="80" 
+                                                    Visibility="Hidden"
+                                                    Click="AdmissionButton_Click"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" 
+                                            Margin="0,20,0,0">
+                                            <Border BorderBrush="Gray" 
+                                            BorderThickness="1" 
+                                            Width="100" 
+                                            Height="30">
+                                                <RadioButton Content="졸업" 
+                                                  VerticalAlignment="Center" 
+                                                  FontSize="15" 
+                                                  Margin="10,0,0,0"
+                                                  VerticalContentAlignment="Center"
+                                                  x:Name="cbGraduation" 
+                                                             GroupName="check"/>
+                                            </Border>
+                                        </StackPanel>
+                                        <Button Style="{StaticResource WhiteBtn}" 
+                                                Content="확인" 
+                                            Margin="0,30,0,0"
+                                                Width="100" 
+                                                Visibility="Visible"
+                                                Click="AdmissionButton_Click"
+                                                HorizontalAlignment="Left"/>
+                                        
+                                        <Button Style="{StaticResource WhiteBtn}" 
+                                                Content="초기화" 
+                                                Margin="0,30,0,0"
+                                                Width="100" 
+                                                Visibility="Visible"
+                                                Click="Button_Click"
+                                                HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Center"
+                                    Margin="0,30,0,0">
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+
+        </ScrollViewer>
+    </Grid>
+</UserControl>

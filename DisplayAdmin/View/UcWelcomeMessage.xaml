@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="DisplayAdmin.View.UcWelcomeMessage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DisplayAdmin.View"
+             mc:Ignorable="d" d:DesignHeight="920" d:DesignWidth="1180">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DisplayAdmin;component/ControlDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="62"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Height="62" Background="#061b2b" Grid.Row="0">
+            <Border CornerRadius="3" Width="8" Height="24" Background="#4ca0e5" 
+                    VerticalAlignment="Center" HorizontalAlignment="Left" Margin="35,0,0,0"/>
+            <Label Content="환영 메세지" Foreground="White" FontSize="21" FontFamily="NanumgothicBold" VerticalAlignment="Center"
+                   Margin="18,0,0,0"/>
+        </DockPanel>
+        <StackPanel Background="WhiteSmoke" Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1"
+                    Visibility="Visible" Margin="20" VerticalAlignment="Top">
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                                <Rectangle Width="11" Height="11" Fill="#4ca0e5" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Label Content="방문 환영 메세지 입력" Style="{StaticResource TitleLabel}"/>
+                            </StackPanel>
+                            <DockPanel Margin="0,10,0,10">
+                                <Label Content="메세지" Style="{StaticResource DefaultLabel}" Width="114"/>
+                                <TextBox HorizontalAlignment="Stretch" Width="880" Margin="3,0,0,0"
+                                         Style="{StaticResource WatermarkedTextBox}" Tag="메시지를 입력해 주세요"
+                                         x:Name="tbMessage"/>
+                                <Button Content="등록" 
+                                        Width="76" 
+                                        HorizontalAlignment="Right" 
+                                        Click="Button_Click"
+                                        Style="{StaticResource WhiteBtn}"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

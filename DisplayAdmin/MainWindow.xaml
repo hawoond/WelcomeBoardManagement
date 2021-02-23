@@ -1,0 +1,59 @@
+﻿<Window x:Class="DisplayAdmin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DisplayAdmin"
+        xmlns:view="clr-namespace:DisplayAdmin.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="920" Width="1200" Icon="pack://siteoforigin:,,,/Resources/256.png" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DisplayAdmin;component/ControlDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <TabControl Style="{StaticResource TabControlStyle}">
+            <TabItem Style="{StaticResource TabHeader}" Header="전체 설정">
+                <view:UcConfig/>
+            </TabItem>
+            <TabItem Style="{StaticResource TabHeader}" Header="정보 관리">
+                <TabControl>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="책">
+                        <view:UcBook/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="축하 메세지">
+                        <view:UcCelebration/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="영어회화">
+                        <view:UcConversation/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="급식">
+                        <view:UcFoodMenu/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="직업">
+                        <view:UcJob/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="영상">
+                        <view:UcPromotionMovie/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="안전정보">
+                        <view:UcSaftyInfo/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="스승의날">
+                        <view:UcTeachersDay/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="날씨">
+                        <view:UcWeather/>
+                    </TabItem>
+                    <TabItem Style="{StaticResource TabItemHeader}" Header="환영 메세지">
+                        <view:UcWelcomeMessage/>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>

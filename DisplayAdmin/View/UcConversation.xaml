@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="DisplayAdmin.View.UcConversation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DisplayAdmin.View"
+             xmlns:control="clr-namespace:DisplayAdmin.View.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="920" d:DesignWidth="1180">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DisplayAdmin;component/ControlDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="62"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Height="62" Background="#061b2b" Grid.Row="0">
+            <Border CornerRadius="3" Width="8" Height="24" Background="#4ca0e5" 
+                    VerticalAlignment="Center" HorizontalAlignment="Left" Margin="35,0,0,0"/>
+            <Label Content="영어회화" Foreground="White" FontSize="21" FontFamily="NanumgothicBold" VerticalAlignment="Center"
+                   Margin="18,0,0,0"/>
+        </DockPanel>
+        <ScrollViewer  VerticalScrollBarVisibility="Hidden" Background="WhiteSmoke" AllowDrop="True"
+                       Grid.Row="1">
+            <StackPanel Orientation="Vertical" Background="WhiteSmoke" Margin="20">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1"
+                    Visibility="Visible" VerticalAlignment="Top">
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                                <Rectangle Width="11" Height="11" Fill="#4ca0e5" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Label Content="영어회화 파일 첨부" Style="{StaticResource TitleLabel}"/>
+                            </StackPanel>
+                            <DockPanel Margin="0,10,0,10">
+                                <Label Content="파일 첨부" Style="{StaticResource DefaultLabel}" Width="114"/>
+                                <Grid Background="#ffffff" Margin="3,0,0,0">
+                                    <DockPanel x:Name="spOpenFileBackView" Height="40">
+                                        <Button Margin="0,0,0,0" 
+                                                    x:Name="btnOpenFileDialog" 
+                                                    Content="파일 선택" 
+                                                    Width="83" 
+                                                    Height="40"
+                                                    Click="BtnOpenFileDialog_Click"
+                                                    Style="{StaticResource WhiteBtn}"/>
+                                        <TextBox  x:Name="tbFile"
+                                                  Margin="4,0,0,0" 
+                                                     BorderThickness="1,1,1,1" 
+                                                     HorizontalAlignment="Stretch" 
+                                                     Width="Auto" 
+                                                     Height="40"
+                                                     Text="{Binding Path=Filepath}"/>
+                                    </DockPanel>
+                                </Grid>
+                            </DockPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <StackPanel Orientation="Vertical">
+                    <Border Background="White" BorderBrush="Gray" BorderThickness="1"
+                    Visibility="Visible" VerticalAlignment="Top" Margin="0,20,0,0">
+                        <StackPanel Orientation="Vertical" Margin="20">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                                <Rectangle Width="11" Height="11" Fill="#4ca0e5" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Label Content="영어회화 직접 입력" Style="{StaticResource TitleLabel}"/>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1010"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center"
+                                        HorizontalAlignment="Stretch">
+                                    <DockPanel>
+                                        <Label Content="영어" Width="120" Height="40" Style="{StaticResource DefaultLabel}"/>
+                                        <TextBox x:Name="tbEnglish" HorizontalAlignment="Stretch" Width="Auto" Margin="3,0,0,0"
+                                                 Style="{StaticResource WatermarkedTextBox}" Tag="영어 회화 문장을 적어주세요"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0,5,0,0">
+                                        <Label VerticalAlignment="Center" Content="한국어 (해석)" Width="120" Height="40" Style="{StaticResource DefaultLabel}"/>
+                                        <TextBox x:Name="tbKorean" HorizontalAlignment="Stretch" Width="Auto" Margin="3,0,0,0"
+                                                 Style="{StaticResource WatermarkedTextBox}" Tag="영어를 한국어로 해석해주세요"/>
+                                    </DockPanel>
+                                </StackPanel>
+                                <Button Content="등록" Click="Button_Click_Table_Insert"
+                                    HorizontalAlignment="Right"
+                                    Grid.Column="1"
+                                    Style="{StaticResource WhiteBtn}"
+                                    Width="85"
+                                    VerticalAlignment="Stretch"/>
+                            </Grid>
+
+                            <!--<ListBox x:Name="lbConversations"
+                                 ItemsSource="{Binding Conversations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewMouseLeftButtonDown="List_PreviewMouseLeftButtonDown"
+                                 PreviewMouseMove="List_PreviewMouseMove"
+                                 Drop="List_Drop"
+                                 AllowDrop="True"
+                                 Margin="0,30,0,0"
+                                 Height="274"/>-->
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!--<ListBox x:Name="lbConversationList" ItemsSource="{Binding Conversations}"/>-->
+
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="White" 
+                            Width="1140"
+                            BorderBrush="Gray" 
+                            BorderThickness="1"
+                            Margin="0,20,0,0">
+                        <StackPanel Orientation="Vertical" 
+                                Margin="24,20,24,20">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                                <Rectangle Width="11" Height="11" Fill="#4ca0e5" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Label Content="날짜 및 시간 설정" Style="{StaticResource TitleLabel}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Width="446" Height="418" HorizontalAlignment="Left" >
+                                    <Calendar SelectedDatesChanged="CdrReserveDate_SelectedDatesChanged" x:Name="cdrReserveDate" />
+                                </Viewbox>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="20,0,0,0" Width="616">
+                                    <ListBox x:Name="lbAllConvList"
+                                             Width="616"
+                                             Height="200" 
+                                             HorizontalAlignment="Center"
+                                             Margin="0,0,0,20"
+                                             PreviewMouseLeftButtonDown="LbAllConvList_PreviewMouseLeftButtonDown"
+                                             PreviewMouseRightButtonUp="LbAllConvList_PreviewMouseRightButtonUp"
+                                             SelectionChanged="LbAllConvList_SelectionChanged" >
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type control:UcReservListItem}">
+                                                <control:UcReservListItem DataContext="{Binding}"/>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <ListBox x:Name="lbReserveList"
+                                             Width="616"
+                                             Drop="LbReserveList_Drop"
+                                             PreviewMouseRightButtonUp="LbReserveList_PreviewMouseRightButtonUp"
+                                             AllowDrop="True"
+                                             Height="180" 
+                                             HorizontalAlignment="Center"
+                                             Margin="0,0,0,0">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type control:UcReservListItem}">
+                                                    <control:UcReservListItem DataContext="{Binding}"/>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                    Margin="0,30,0,0">
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
+   
